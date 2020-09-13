@@ -8,24 +8,25 @@
 </head>
 <body>
     <div class="container">
+        <h2>Create a new account</h2>
         <form action="compare.php" method="POST">
-        <div class="form-group">
-            <input type="email" class="form-control" placeholder="Enter email" name="email">
-        </div>
-        <div class="form-group">
-            <input type="username" class="form-control" placeholder="Username" name="username">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" name="acc_pas">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Enter email" name="email">
+            </div>
+            <div class="form-group">
+                <input type="username" class="form-control" placeholder="Username" name="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" name="acc_pas">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <br>
         <a href="ispis.php">Click here for the list of all users</a>
         <br>
         <br>
-        <a href="update.php">Click here to change the password for your user</a>
+        <a href="update_page.php">Click here to change the password for your user</a>
         <br>
         <br>
         <a href="delete_page.php">Click here to delete your acc</a>

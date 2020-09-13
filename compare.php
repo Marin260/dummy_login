@@ -17,12 +17,12 @@ $exists = 0; //varijabla koja gleda postoji li vec korisnik
 if ($result->num_rows > 0)
     while($row = $result->fetch_assoc()){
         if($row["username"] == $username){
-            echo "<br>This username is already taken<br>";
+            echo '<br>This username is already taken<br><br><a href="index.php">Go back</a>';
             $exists = 1;
             break;
         }
         elseif($row["email"] == $email){
-            echo "<br>Email addres already in use<br>";
+            echo '<br>Email addres already in use<br><br><a href="index.php">Go back</a>';
             $exists = 1;
             break;
         }
@@ -34,7 +34,7 @@ if($exists == 0){
         VALUES ('$username', '$email', '$acc_pas')";
     
         if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
+            echo 'New record created successfully<br><br><a href="index.php">Go back</a>';
           } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
           }

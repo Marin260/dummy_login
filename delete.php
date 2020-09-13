@@ -18,13 +18,13 @@ if ($result->num_rows > 0){
             break;
         }
         elseif($row['username'] == $username && $row['acc_pas'] != $acc_pas){
-            echo "Wrong password";
+            echo 'Wrong password<br><br><a href="delete_page.php">Try again</a>';
             $found = 2;
             break;
         }
     }
     if($found == 0){
-        echo "This user does not exist";
+        echo 'This user does not exist<br><br><a href="delete_page.php">Go back</a>';
     }
 }
 else{
@@ -34,7 +34,7 @@ else{
 if($found == 1){
     $sql = "DELETE FROM new_user WHERE username='$username'";
     if(mysqli_query($conn, $sql)){
-        echo "User deleted succesfully";
+        echo 'User deleted succesfully<br><br><a href="index.php">Go back</a>';
     }
     else{
         echo "Error deleting user" . $conn->error;

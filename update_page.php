@@ -7,20 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-
 <div class="container">
-    <h2>Delete your account</h2>
-    <form action="delete.php" method="POST">
+    <h2>Update password</h2>
+    <form action="update.php" method="POST">
         <div class="form-group">
             <input type="username" class="form-control" placeholder="Username" name="username">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" name="acc_pas">
+            <input type="password" class="form-control" placeholder="Old password" name="acc_pas">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="New password" name="new_acc_pas">
         </div>
         
-        <button type="submit" class="btn btn-danger">Delete</button>
+        <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
-    
 </body>
 </html>
