@@ -40,4 +40,6 @@ if($exists == 0){
           }
 }
 
+mysqli_close($conn);
+
 ?>
