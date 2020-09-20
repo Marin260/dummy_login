@@ -3,12 +3,12 @@
 include "db.php";
 
 $sql = "SELECT id, username, email FROM new_user";
-$result = $conn->query($sql);
+$result = mysqli_query($conn, $sql);
 
 //ispis redaka
-if ($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        echo "<br>Id: " . $row["id"] . "   Username: " . $row["username"] . "   Email: " . $row["email"];
+if (mysqli_num_rows($result) > 0){
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<br>Id: " . $row["id"] . "   Username: " . htmlspecialchars($row["username"]) . "   Email: " . $row["email"];
     }
 }
 else{

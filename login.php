@@ -8,11 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <h2>Sign up</h2>
+        <h2>Log in</h2>
         <form action="compare.php" method="POST">
-            <div class="form-group">
-                <input type="email" class="form-control" placeholder="Enter email" name="email">
-            </div>
             <div class="form-group">
                 <input type="username" class="form-control" placeholder="Username" name="username">
             </div>
@@ -20,19 +17,8 @@
                 <input type="password" class="form-control" placeholder="Password" name="acc_pas">
             </div>
             
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Log in</button>
         </form>
-        <br>
-        <a href="login.php" class="text-success">Already have an account? click here to log in</a>
-        <br>
-        <br>
-        <a href="ispis.php">Click here for the list of all users</a>
-        <br>
-        <br>
-        <a href="update_page.php">Click here to change the password for your user</a>
-        <br>
-        <br>
-        <a href="delete_page.php">Click here to delete your acc</a>
     </div>
 
 
