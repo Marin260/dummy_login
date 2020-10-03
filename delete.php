@@ -6,41 +6,45 @@ $username = $_POST['username'];
 $acc_pas = $_POST['acc_pas'];
 
 
-$sql = "SELECT username, acc_pas FROM new_user";
-$result = $conn->query($sql);
+$sql = "SELECT username, acc_pas FROM new_user WHERE username=?";
+$stmt = mysqli_stmt_init($conn);
 
-$found = 0;
-
-if ($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        if($row['username'] == $username && $row['acc_pas'] == $acc_pas){
-            $found = 1;
-            break;
-        }
-        elseif($row['username'] == $username && $row['acc_pas'] != $acc_pas){
-            echo 'Wrong password<br><br><a href="delete_page.php">Try again</a>';
-            $found = 2;
-            break;
-        }
-    }
-    if($found == 0){
-        echo 'This user does not exist<br><br><a href="delete_page.php">Go back</a>';
-    }
+if (!mysqli_stmt_prepare($stmt, $sql)){
+    header("Location: ./delete_page.php?error=sqlerror");
+    exit();
 }
 else{
-    echo "The table is empty";
-}
-
-if($found == 1){
-    $sql = "DELETE FROM new_user WHERE username='$username'";
-    if(mysqli_query($conn, $sql)){
-        echo 'User deleted succesfully<br><br><a href="index.php">Go back</a>';
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if(mysqli_num_rows($result) != 1){
+        header("Location: ./delete_page.php?error=wrongusername");
+        exit();
+        else if(mysqli_num_rows($result) == 1){
     }
-    else{
-        echo "Error deleting user" . $conn->error;
+        if($row = mysqli_fetch_assoc($result)){
+            $pass_check = password_verify($acc_pas, $row['acc_pas']);
+            if($pass_check == false){
+                header("Location: ./delete_page.php?error=wrongpassword");
+                exit();
+            }
+            else if($pass_check == true){
+                //brisat lika iz baze
+                $sql = "DELETE FROM new_user WHERE username=?";
+                $stmt = mysqli_stmt_init($conn);
+                if (!mysqli_stmt_prepare($stmt, $sql)){
+                    header("Location: ./delete_page.php?error=sqlerror");
+                    exit();
+                }
+                else{
+                    mysqli_stmt_bind_param($stmt, 's', $username);
+                    mysqli_stmt_execute($stmt);
+                    header("Location: ./delete_page.php?delete_status=success");;
+                }
+            }
+        }
     }
 }
-
 mysqli_close($conn);
 
 ?>

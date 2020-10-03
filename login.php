@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2>Log in</h2>
-        <form action="compare.php" method="POST">
+        <form action="login_script.php" method="POST">
             <div class="form-group">
                 <input type="username" class="form-control" placeholder="Username" name="username">
             </div>
@@ -17,7 +17,7 @@
                 <input type="password" class="form-control" placeholder="Password" name="acc_pas">
             </div>
             
-            <button type="submit" class="btn btn-primary">Log in</button>
+            <button type="submit" class="btn btn-primary" name="login_submit">Log in</button>
         </form>
     </div>
 

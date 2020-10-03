@@ -7,6 +7,11 @@ $username = $_POST['username'];
 $email = $_POST['email'];
 $acc_pas = $_POST['acc_pas'];
 
+if(empty($username) || empty($email) || empty($acc_pas)){
+    header("Location: ./index.php?error=emptyfieldas");
+    exit();
+}
+
 // usporedba
 $sql = "SELECT username, email FROM new_user WHERE username=? OR email=?";
 $stmt = mysqli_stmt_init($conn);
@@ -23,13 +28,15 @@ if(mysqli_num_rows($result) == 0){
         exit("SQL error: " + mysqli_errno($conn));
     }
     
-    mysqli_stmt_bind_param($stmt, "sss", $username, $email, $acc_pas);
+    $hash_pas = password_hash($acc_pas, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hash_pas);
     mysqli_stmt_execute($stmt);
-    echo "yes";
+    header("Location: ./login.php?signup=success");
 }
 else{
     //username exists
-    exit("Username or email exists");
+    exit("Username or email exists1");
 }
 
 ?>
