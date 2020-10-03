@@ -20,8 +20,8 @@ else{
     if(mysqli_num_rows($result) != 1){
         header("Location: ./delete_page.php?error=wrongusername");
         exit();
-        else if(mysqli_num_rows($result) == 1){
     }
+    else if(mysqli_num_rows($result) == 1){
         if($row = mysqli_fetch_assoc($result)){
             $pass_check = password_verify($acc_pas, $row['acc_pas']);
             if($pass_check == false){
