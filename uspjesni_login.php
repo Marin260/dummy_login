@@ -20,8 +20,8 @@ if(isset($_SESSION['username'])){
     echo '<br><form action="logout_script.php" method="POST"><button type="submit" class="btn btn-primary" name="logout_submit">Log out</button></form>';
 }
 else{
-    echo '<p>You are loged out</p>';
-    echo '<br><button type="submit" class="btn btn-primary" name="logout_submit"><a href="login.php">Log in</a></button>';
+    header("Location: ./login.php");
+
 }
 
 ?>
